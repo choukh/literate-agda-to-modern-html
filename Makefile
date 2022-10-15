@@ -13,31 +13,33 @@
 #
 # ============================================================================
 
+DOCS = docs
 SOURCES := $(shell find src -type f -name '*.lagda.md')
-TARGETS := $(patsubst src/%.lagda.md,docs/%.html,$(SOURCES))
+TARGETS := $(addprefix $(DOCS)/,$(subst /,.,$(patsubst src/%.lagda.md,%.html,$(SOURCES))))
 
 .PHONY: all
-all: docs/.nojekyll $(TARGETS)
+all: $(DOCS)/.nojekyll $(TARGETS)
 
 .PHONY: clean
 clean:
-	rm -rf docs
+	rm -rf $(DOCS)
 
 .PHONY: watch
 watch:
 	./tools/serve.sh --watch
 
-docs/.nojekyll: $(wildcard public/*) public/.nojekyll
-	rm -vrf docs && mkdir -p docs && cp -vr public/.nojekyll public/* docs
+$(DOCS)/.nojekyll: $(wildcard public/*) public/.nojekyll
+	rm -vrf $(DOCS) && mkdir -p $(DOCS) && cp -vr public/.nojekyll public/* $(DOCS)
 
-.PHONY: docs
-docs: docs/.nojekyll
+.PHONY: $(DOCS)
+docs: $(DOCS)/.nojekyll
 
 # Literate agda markdown to pandoc markdown
-docs/%.md: src/%.lagda.md
-	cd src && agda --html --html-dir=../docs --highlight-occurrences --html-highlight=auto "$(<F)"
+.SECONDEXPANSION:
+$(DOCS)/%.md: src/$$(subst .,/,%).lagda.md
+	agda --html --html-dir=$(DOCS) --highlight-occurrences --html-highlight=auto "$<"
 
 # Generalized rule: how to build a .html file from each .md
 # Note: you will need pandoc 2 or greater for this to work
-docs/%.html: docs/%.md template.html5 Makefile tools/build.sh
+$(DOCS)/%.html: $(DOCS)/%.md template.html5 Makefile tools/build.sh
 	tools/build.sh "$<" "$@"

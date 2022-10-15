@@ -1,0 +1,3 @@
+name: my-project-name
+depend: standard-library
+include: src
