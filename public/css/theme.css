@@ -107,6 +107,34 @@
   --main-width-narrow: 550px;
   --side-note-max-width: 300px;
 
+  /* --- Agda --- */
+  --agda-comment: #B22222;
+  --agda-keyword: #CD6600;
+  --agda-plain: black;
+  --agda-string: #B22222;
+  --agda-number: A020F0;
+  --agda-symbol: #404040;
+  --agda-primitive-type: #0000CD;
+  --agda-hole: #B4EEB4;
+  --agda-bound:black;
+  --agda-inductive-constructor:#008B00;
+  --agda-coinductive-constructor:#8B7500;
+  --agda-datatype:#0000CD;
+  --agda-field:#EE1289;
+  --agda-function:#0000CD;
+  --agda-module:#A020F0;
+  --agda-postulate:#0000CD;
+  --agda-primitive:#0000CD;
+  --agda-record:#0000CD;
+  --agda-dotted-pattern-bg:yellow;
+  --agda-unsolved-meta-bg:yellow;
+  --agda-termination-problem-bg:#FFA07A;
+  --agda-incomplete-pattern-bg:#F5DEB3;
+  --agda-type-checks-bg:#ADD8E6;
+  --agda-deadcode-bg:#808080;
+  --agda-shadowing-in-telescope-bg:#808080;
+  --agda-error:red;
+  --agda-hover:#B4EEB4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -131,6 +159,35 @@
     --color-border-heavy: #524f4d;
 
     --color-table-heading: #242121;
+
+      /* --- Agda --- */
+    --agda-comment: #ac8282;
+    --agda-keyword: #ffaa00;
+    --agda-plain: white;
+    --agda-string: #aaffff;
+    --agda-number: lightGreen;
+    --agda-symbol: #b8b7b7;
+    --agda-primitive-type: rgb(230, 212, 173);
+    --agda-hole: #B4EEB4;
+    --agda-bound:rgba(255, 255, 255, 0.843);
+    --agda-inductive-constructor:#ccffaa;
+    --agda-coinductive-constructor:#aaffcc;
+    --agda-datatype:rgb(221, 169, 219);
+    --agda-field:#ff99cc;
+    --agda-function:#66ccff;
+    --agda-module:#ffaaff;
+    --agda-postulate:#ff7766;
+    --agda-primitive:#ff66ad;
+    --agda-record:rgb(230, 191, 173);
+    --agda-dotted-pattern-bg:yellow;
+    --agda-unsolved-meta-bg:yellow;
+    --agda-termination-problem-bg:#FFA07A;
+    --agda-incomplete-pattern-bg:#F5DEB3;
+    --agda-type-checks-bg:#ADD8E6;
+    --agda-deadcode-bg:#808080;
+    --agda-shadowing-in-telescope-bg:#808080;
+    --agda-error:#c32d2d;
+    --agda-hover:#9f3434;
   }
 }
 
@@ -623,46 +680,46 @@ pre.tight-code > code.sourceCode > span {
 /* --- Code line highlights --- {{{ */
 
 /* Aspects. */
-.Agda .Comment       { color: #ac8282 }
+.Agda .Comment       { color: var(--agda-comment) }
 .Agda .Background    {}
-.Agda .Markup        { color: white }
-.Agda .Keyword       { color: #ffaa00 }
-.Agda .String        { color: #aaffff }
-.Agda .Number        { color: lightGreen }
-.Agda .Symbol        { color: #b8b7b7 }
-.Agda .PrimitiveType { color: rgb(230, 212, 173) }
-.Agda .Pragma        { color: white   }
+.Agda .Markup        { color: var(--agda-plain) }
+.Agda .Keyword       { color: var(--agda-keyword) }
+.Agda .String        { color: var(--agda-string) }
+.Agda .Number        { color: var(--agda-number) }
+.Agda .Symbol        { color: var(--agda-symbol) }
+.Agda .PrimitiveType { color: var(--agda-primitive-type) }
+.Agda .Pragma        { color: var(--agda-plain) }
 .Agda .Operator      {}
-.Agda .Hole          { background: #B4EEB4 }
+.Agda .Hole          { background: var(agda-hole) }
 
 /* NameKinds. */
-.Agda .Bound                  { color: rgba(255, 255, 255, 0.843)   }
-.Agda .Generalizable          { color: white   }
-.Agda .InductiveConstructor   { color: #ccffaa }
-.Agda .CoinductiveConstructor { color: #aaffcc }
-.Agda .Datatype               { color: rgb(221, 169, 219) }
-.Agda .Field                  { color: #ff99cc }
-.Agda .Function               { color: #66ccff }
-.Agda .Module                 { color: #ffaaff }
-.Agda .Postulate              { color: #ff7766 }
-.Agda .Primitive              { color: #ff66ad }
-.Agda .Record                 { color: rgb(230, 191, 173) }
+.Agda .Bound                  { color: var(--agda-bound) }
+.Agda .Generalizable          { color: var(--agda-plain) }
+.Agda .InductiveConstructor   { color: var(--agda-inductive-constructor) }
+.Agda .CoinductiveConstructor { color: var(--agda-coinductive-constructor) }
+.Agda .Datatype               { color: var(--agda-datatype) }
+.Agda .Field                  { color: var(--agda-field) }
+.Agda .Function               { color: var(--agda-function) }
+.Agda .Module                 { color: var(--agda-module) }
+.Agda .Postulate              { color: var(-agda-postulate) }
+.Agda .Primitive              { color: var(--agda-primitive) }
+.Agda .Record                 { color: var(--agda-record) }
 
 /* OtherAspects. */
 .Agda .DottedPattern        {}
-.Agda .UnsolvedMeta         { color: white; background: yellow         }
-.Agda .UnsolvedConstraint   { color: white; background: yellow         }
-.Agda .TerminationProblem   { color: white; background: #FFA07A        }
-.Agda .IncompletePattern    { color: white; background: #F5DEB3        }
-.Agda .Error                { color: #c32d2d;   text-decoration: underline }
-.Agda .TypeChecks           { color: white; background: #ADD8E6        }
-.Agda .Deadcode             { color: white; background: #808080        }
-.Agda .ShadowingInTelescope { color: white; background: #808080        }
+.Agda .UnsolvedMeta         { color: var(--agda-plain); background: var(--agda-dotted-pattern-bg) }
+.Agda .UnsolvedConstraint   { color: var(--agda-plain); background: var(--agda-unsolved-meta-bg) }
+.Agda .TerminationProblem   { color: var(--agda-plain); background: var(--agda-termination-problem-bg) }
+.Agda .IncompletePattern    { color: var(--agda-plain); background: var(--agda-incomplete-pattern-bg) }
+.Agda .Error                { color: var(--agda-error); text-decoration: underline }
+.Agda .TypeChecks           { color: var(--agda-plain); background: var(--agda-type-checks-bg) }
+.Agda .Deadcode             { color: var(--agda-plain); background: var(--agda-deadcode-bg) }
+.Agda .ShadowingInTelescope { color: var(--agda-plain); background: var(--agda-shadowing-in-telescope-bg) }
 
 /* Standard attributes. */
 .Agda a { text-decoration: none }
-.Agda a[href]:hover { background-color: #9f3434 }
-.Agda [href].hover-highlight { background-color: #9f3434; }
+.Agda a[href]:hover { background-color: var(--agda-hover) }
+.Agda [href].hover-highlight { background-color: var(--agda-hover) }
 
 /* I used some code I contributed to owickstrom's pandoc-emphasize-code[1] as
  * inspiration for these changes.
