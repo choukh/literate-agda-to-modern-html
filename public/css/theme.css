@@ -176,7 +176,7 @@
     --agda-field:#ff99cc;
     --agda-function:#66ccff;
     --agda-module:#ffaaff;
-    --agda-postulate:#ff7766;
+    --agda-postulate:#fdff71;
     --agda-primitive:#ff66ad;
     --agda-record:rgb(230, 191, 173);
     --agda-dotted-pattern-bg:yellow;
@@ -701,7 +701,7 @@ pre.tight-code > code.sourceCode > span {
 .Agda .Field                  { color: var(--agda-field) }
 .Agda .Function               { color: var(--agda-function) }
 .Agda .Module                 { color: var(--agda-module) }
-.Agda .Postulate              { color: var(-agda-postulate) }
+.Agda .Postulate              { color: var(--agda-postulate) }
 .Agda .Primitive              { color: var(--agda-primitive) }
 .Agda .Record                 { color: var(--agda-record) }
 
